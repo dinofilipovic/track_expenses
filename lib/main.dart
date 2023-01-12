@@ -26,7 +26,7 @@ class MyHomePage extends StatelessWidget {
           Container(
             width: double.infinity,
             child: Card(
-              child: Text('CHART'),
+              child: Text('Chart on Top'),
               elevation: 5,
               color: Colors.blue,
             ),
