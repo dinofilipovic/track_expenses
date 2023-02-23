@@ -18,14 +18,14 @@ class MyHomePage extends StatelessWidget {
   final List<Transaction> transactions = [
     Transaction(
       id: 't1',
-      title: 'Playstation 5',
+      title: 'Hogwarts Legacy',
       amount: 69.99,
       date: DateTime.now(),
     ),
     Transaction(
       id: 't2',
-      title: 'Hogwarts Legacy',
-      amount: 69.99,
+      title: 'Playstation 5',
+      amount: 599.99,
       date: DateTime.now(),
     ),
   ];
@@ -41,44 +41,62 @@ class MyHomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             width: double.infinity,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black,
-                width: 2,
-              ),
-            ),
             child: Card(
-              child: Text('Chart on Top'),
-              elevation: 5,
               color: Colors.blue,
+              child: Text('CHART!'),
+              elevation: 5,
             ),
           ),
           Column(
-            children: transactions.map(
-              (tx) {
-                return Card(
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        child: Text(tx.amount.toString()),
+            children: transactions.map((tx) {
+              return Card(
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 15,
                       ),
-                      Column(
-                        children: <Widget>[
-                          Text(tx.title),
-                          Text(
-                            tx.date.toString(),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.purple,
+                          width: 2,
+                        ),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        tx.amount.toString(),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple,
+                        ),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          tx.title,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ).toList(),
-          )
+                        ),
+                        Text(
+                          tx.date.toString(),
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
         ],
       ),
     );
