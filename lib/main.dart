@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
+// Custom Widgets and Components
 import './transaction.dart';
 
 void main() => runApp(MyApp());
@@ -25,7 +27,7 @@ class MyHomePage extends StatelessWidget {
     Transaction(
       id: 't2',
       title: 'Playstation 5',
-      amount: 599.99,
+      amount: 59.99,
       date: DateTime.now(),
     ),
   ];
@@ -66,7 +68,7 @@ class MyHomePage extends StatelessWidget {
                       ),
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        tx.amount.toString(),
+                        '\$ ${tx.amount}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -85,7 +87,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          tx.date.toString(),
+                          DateFormat.yMMMMd().format(tx.date),
                           style: TextStyle(
                             color: Colors.grey,
                           ),
