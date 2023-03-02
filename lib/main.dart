@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 // Custom Widgets and Components
-import './transaction.dart';
+import './models/transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -47,9 +47,9 @@ class MyHomePage extends StatelessWidget {
         children: <Widget>[
           Container(
             width: double.infinity,
-            child: Card(
+            child: const Card(
               color: Colors.blue,
-              child: Text('CHART!'),
+              child: const Text('CHART!'),
               elevation: 5,
             ),
           ),
@@ -61,20 +61,20 @@ class MyHomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   TextField(
-                    decoration: InputDecoration(labelText: 'Title'),
+                    decoration: const InputDecoration(labelText: 'Title'),
                     onChanged: (val) {
                       titleInput = val;
                     },
                   ),
                   TextField(
-                    decoration: InputDecoration(labelText: 'Amount'),
+                    decoration: const InputDecoration(labelText: 'Amount'),
                     onChanged: (val) => amountInput = val,
                   ),
                   TextButton(
                       style: TextButton.styleFrom(
                           foregroundColor: Colors.purpleAccent),
                       onPressed: () {},
-                      child: Text('Add Transaction'))
+                      child: const Text('Add Transaction'))
                 ],
               ),
             ),
@@ -85,7 +85,7 @@ class MyHomePage extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.symmetric(
+                      margin: const EdgeInsets.symmetric(
                         vertical: 10,
                         horizontal: 15,
                       ),
@@ -98,7 +98,7 @@ class MyHomePage extends StatelessWidget {
                       padding: EdgeInsets.all(10),
                       child: Text(
                         '\$ ${tx.amount}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Colors.purple,
@@ -110,7 +110,7 @@ class MyHomePage extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           tx.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
