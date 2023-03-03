@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:track_expenses/widgets/new_transaction.dart';
+import 'package:track_expenses/widgets/transaction_list.dart';
 
 // Custom Widgets and Components
 
@@ -36,32 +38,8 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
-          Card(
-            elevation: 5,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  TextField(
-                    decoration: const InputDecoration(labelText: 'Title'),
-                    onChanged: (val) {
-                      titleInput = val;
-                    },
-                  ),
-                  TextField(
-                    decoration: const InputDecoration(labelText: 'Amount'),
-                    onChanged: (val) => amountInput = val,
-                  ),
-                  TextButton(
-                      style: TextButton.styleFrom(
-                          foregroundColor: Colors.purpleAccent),
-                      onPressed: () {},
-                      child: const Text('Add Transaction'))
-                ],
-              ),
-            ),
-          ),
+          NewTransaction(),
+          TransactionList(),
         ],
       ),
     );
