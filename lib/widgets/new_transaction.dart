@@ -4,6 +4,31 @@ class NewTransaction extends StatelessWidget {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
+  // Created callback function
+  final Function addTx;
+
+  // Creating Constructor for that function
+  NewTransaction(this.addTx);
+
+  void submitData(BuildContext context) {
+    final enteredTitle = titleController.text;
+    final enteredAmount = double.tryParse(amountController.text) ?? 0;
+
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Please enter a title and amount.'),
+        ),
+      );
+      return;
+    }
+
+    addTx(
+      enteredTitle,
+      enteredAmount,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -24,7 +49,7 @@ class NewTransaction extends StatelessWidget {
             TextButton(
                 style:
                     TextButton.styleFrom(foregroundColor: Colors.purpleAccent),
-                onPressed: () {},
+                onPressed: () => submitData(context),
                 child: const Text('Add Transaction'))
           ],
         ),

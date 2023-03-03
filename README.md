@@ -1,2 +1,2 @@
 # Track-Expenses
- Flutter Track Expenses Showcase
+ This is Track Expenses application showcase on github repository.

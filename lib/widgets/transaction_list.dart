@@ -1,38 +1,18 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 // Custom Widgets and Models
 import '../models/transaction.dart';
 
-class TransactionList extends StatefulWidget {
-  const TransactionList({super.key});
-
-  @override
-  State<TransactionList> createState() => _TransactionListState();
-}
-
-class _TransactionListState extends State<TransactionList> {
-  final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      title: 'Hogwarts Legacy',
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Playstation 5',
-      amount: 59.99,
-      date: DateTime.now(),
-    ),
-  ];
+class TransactionList extends StatelessWidget {
+  final List<Transaction> transactions;
+  // Constructors
+  TransactionList(this.transactions);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: _userTransactions.map((tx) {
+      children: transactions.map((tx) {
         return Card(
           child: Row(
             children: <Widget>[
@@ -69,7 +49,7 @@ class _TransactionListState extends State<TransactionList> {
                   ),
                   Text(
                     DateFormat.yMMMMd().format(tx.date),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.grey,
                     ),
                   ),
