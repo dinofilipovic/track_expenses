@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class NewTransaction extends StatelessWidget {
   final titleController = TextEditingController();
@@ -10,23 +11,15 @@ class NewTransaction extends StatelessWidget {
   // Creating Constructor for that function
   NewTransaction(this.addTx);
 
-  void submitData(BuildContext context) {
+  void submitData() {
     final enteredTitle = titleController.text;
     final enteredAmount = double.tryParse(amountController.text) ?? 0;
 
-    if (enteredTitle.isEmpty || enteredAmount <= 0) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('Please enter a title and amount.'),
-        ),
-      );
+    if (enteredAmount.isNegative || enteredAmount.isNaN || enteredAmount == 0) {
       return;
     }
 
-    addTx(
-      enteredTitle,
-      enteredAmount,
-    );
+    addTx(enteredTitle, enteredAmount);
   }
 
   @override
@@ -38,18 +31,28 @@ class NewTransaction extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
+            // INPUT: Title
             TextField(
               decoration: const InputDecoration(labelText: 'Title'),
               controller: titleController,
+              onSubmitted: (_) => submitData,
             ),
+            // INPUT: Amount
             TextField(
               decoration: const InputDecoration(labelText: 'Amount'),
               controller: amountController,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+              ],
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (_) => submitData,
             ),
+            // INPUT: Submit
             TextButton(
                 style:
                     TextButton.styleFrom(foregroundColor: Colors.purpleAccent),
-                onPressed: () => submitData(context),
+                onPressed: submitData,
                 child: const Text('Add Transaction'))
           ],
         ),
