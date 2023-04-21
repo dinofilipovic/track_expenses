@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 class Chart extends StatelessWidget {
   const Chart({super.key});
-  List <Map<String, Object>> get groupedTransactionValues 
+  List <Map<String, Object>> get groupedTransactionValues {
+    return List.generate(7, (index) => null)
+  }
 
   @override
   Widget build(BuildContext context) {
